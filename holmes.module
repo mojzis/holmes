@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ * Description here.
+ */
+
+/**
+ * hook_menu
+ */
+function holmes_menu() {
+  $items = array();
+
+  return $items;
+}

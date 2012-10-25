@@ -1,0 +1,5 @@
+name = holmes 
+description = 
+core = 7.x
+#dependencies[] = devel
+#configure = admin/config/holmes
