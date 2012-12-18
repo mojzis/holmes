@@ -12,6 +12,7 @@ a drupal developer's true friend
 * enjoy
 
 ## plans
+* show hook source code
 * see @todos scattered in code :)
 * Drupal Internal Metadata browser
 
