@@ -5,7 +5,7 @@
 
 ## find the hidden hooks
 * a simple overview of hooks defined in the code of your site
-* very humble beginning of an important Drupal Internal Metadata initiative
+* a very humble beginning of an important Drupal Internal Metadata initiative :)
 
 ## usage
 * download, install

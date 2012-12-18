@@ -9,10 +9,23 @@
  * - why doesnt hook_info show it all ? (ie views)
  * - add a posibility to filter by modules directory / group ...
  * - check what devel has ?!
+ * - try to show the docComment for the hook, too
+ * - add a link to git repo (configurable)
  */
 
 function holmes_list() {
   $hooks = array(
+    'node_edit' => array(
+      'node_prepare',
+      'node_insert',
+      'node_update',
+      'node_validate',
+      'node_submit',
+    ),
+    'node_view' => array(
+      'node_load',
+      'node_view',
+    ),
     'views_definitions' => array(
       'views_form_substitutions',
       'views_form_validate',
