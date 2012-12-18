@@ -30,3 +30,25 @@ function holmes_permission() {
     ),
   );
 }
+
+/**
+ * show the source code of a provided function
+ *
+ * @todo
+ * - is there an easier way of doing this ?
+ * - add syntax (later - can use a filter or a js )
+ */
+function holmes_func_source($fname) {
+  // TODO: what if it aint found (function, file ...)
+  $func = new ReflectionFunction($fname);
+  // TODO: parse the DocComment ?
+  //echo $func->getDocComment();
+  $fle = file($func->getFileName());
+  $out = '';
+  for ($ln = $func->getStartLine(); $ln <=  $func->getEndLine() ; $ln ++ ) {
+  $out .=$fle[$ln-1];
+  }
+  return $out;
+//echo $func;
+}
+

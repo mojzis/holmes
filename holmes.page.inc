@@ -58,21 +58,3 @@ function holmes_hooks($group) {
   }
   return $mods;
 }
-
-/**
- * show the source code of a provided function
- */
-function holmes_func_source($fname) {
-  // TODO: what if it aint found (function, file ...)
-  $func = new ReflectionFunction($fname);
-  // TODO: parse the DocComment ?
-  //echo $func->getDocComment();
-  $fle = file($func->getFileName());
-  $out = '';
-  for ($ln = $func->getStartLine(); $ln <=  $func->getEndLine() ; $ln ++ ) {
-  $out .=$fle[$ln-1];
-  }
-  // todo : formatting
-  return $out;
-//echo $func;
-}

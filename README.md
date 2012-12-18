@@ -1,6 +1,7 @@
 # HOLMES
 
-a drupal developer's true friend
+* a Drupal developer's true friend
+* Through the Looking-Glass and what Drupal hides there
 
 ## find the hidden hooks
 * a simple overview of hooks defined in the code of your site
