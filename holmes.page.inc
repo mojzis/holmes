@@ -6,6 +6,9 @@
  * - add a form where hook / group selection can be performed
  * - make it into a searchable backbone ...
  * - dont forget to list drupal alters, too
+ * - why doesnt hook_info show it all ? (ie views)
+ * - add a posibility to filter by modules directory / group ...
+ * - check what devel has ?!
  */
 
 function holmes_list() {
@@ -34,7 +37,12 @@ function holmes_list() {
   foreach ($hooks as $groupname => $hook_group) {
     dpm(holmes_hooks($hook_group),$groupname);
   }
-  dpm(module_hook_info());
+  $hi = module_hook_info();
+  foreach ($hi as $hookname => $hook) {
+    $higroups[$hook['group']][] = $hookname;
+  }
+  ksort($higroups);
+  dpm($higroups,'some of the hooks defined on this site');
   //dpm($mods);
   return "that's it. for now.";
 }
