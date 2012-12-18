@@ -9,6 +9,24 @@
  */
 function holmes_menu() {
   $items = array();
-
+  $items['admin/structure/holmes'] = array(
+    'title' => 'Hook detective',
+    'page callback' => 'holmes_list',
+    'access arguments' => array('access holmes'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'holmes.page.inc'
+  );
   return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function holmes_permission() {
+  return array(
+    'access holmes' => array(
+      'title' => t('Access Holmes'),
+      'description' => t('For the hooks sherlocks'),
+    ),
+  );
 }

@@ -1,5 +1,5 @@
-name = holmes 
-description = 
+name = holmes
+description = hook detectives
 core = 7.x
-#dependencies[] = devel
+dependencies[] = devel
 #configure = admin/config/holmes
