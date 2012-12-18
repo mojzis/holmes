@@ -2,7 +2,10 @@
 /**
  * @file page callbacks for holmes
  *
- * @todo add a form where hook selection can be performed
+ * @todo
+ * - add a form where hook / group selection can be performed
+ * - make it into a searchable backbone ...
+ * - dont forget to list drupal alters, too
  */
 
 function holmes_list() {
