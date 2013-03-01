@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Description here.
+ * Alice module. Drupal in front of the mirror.
  */
 
 /**
@@ -66,5 +66,24 @@ function holmes_func_source($fname) {
   }
   return $out;
 //echo $func;
+}
+
+function holmes_json_cros($data) {
+  // attention, this could be dangerous
+  drupal_add_http_header('Access-Control-Allow-Origin','*');
+  // TODO : add some token-based authentication
+  
+  switch($_SERVER['REQUEST_METHOD']) {
+    case 'OPTIONS':
+// all headers according to http://benbuckman.net/tech/12/04/cracking-cross-domainallow-origin-nut
+      drupal_add_http_header('Access-Control-Allow-Methods',"'OPTIONS, GET'");
+      drupal_add_http_header('Access-Control-Allow-Headers',"'Content-Type, X-Requested-With, X-PINGOTHER'");
+      drupal_add_http_header('Access-Control-Max-Age', 86400);
+      drupal_json_output(true);
+    break;
+    case 'GET':
+      drupal_json_output($data);
+    break;
+  }
 }
 
