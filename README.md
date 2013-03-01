@@ -16,6 +16,7 @@
 * show hook source code
 * see @todos scattered in code :)
 * Drupal Internal Metadata browser
+* holmes is taken, find a new name ! - alice ?
 
 ### holmes stands for (check all that apply):
 * hook list modules

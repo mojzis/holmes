@@ -14,8 +14,24 @@ function holmes_menu() {
     'page callback' => 'holmes_list',
     'access arguments' => array('access holmes'),
     'type' => MENU_NORMAL_ITEM,
-    'file' => 'holmes.page.inc'
+    'file' => 'includes/holmes.page.inc'
   );
+  $items['admin/structure/holmes/fields'] = array(
+    'title' => 'Fields',
+    'page callback' => 'holmes_fields',
+    'access callback' => TRUE,
+    //array('access holmes'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'includes/structure.page.inc'
+  );
+  $items['admin/structure/holmes/ents'] = array(
+    'title' => 'Entities',
+    'page callback' => 'holmes_ents',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'includes/structure.page.inc'
+  );
+
   return $items;
 }
 
