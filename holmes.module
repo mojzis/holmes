@@ -79,7 +79,7 @@ function holmes_json_cros($data) {
   // attention, this could be dangerous
   drupal_add_http_header('Access-Control-Allow-Origin','*');
   // TODO : add some token-based authentication
-  
+
   switch($_SERVER['REQUEST_METHOD']) {
     case 'OPTIONS':
 // all headers according to http://benbuckman.net/tech/12/04/cracking-cross-domainallow-origin-nut
@@ -94,3 +94,72 @@ function holmes_json_cros($data) {
   }
 }
 
+function holmes_analyze_menu_print($menu_name) {
+  $data = holmes_analyze_menu($menu_name);
+  dpm($data);
+  $out = '';
+  foreach ($data as $row) {
+    $out .= str_repeat('_',$row['level']). $row['title'] . "\t"; //'`'. . '`'
+    unset($row['level']);
+    unset($row['title']);
+    $out .= implode($row, "\t") . "\n" ;
+  }
+  return $out;
+}
+
+function holmes_analyze_menu($menu_name) {
+  $tree = menu_tree_all_data($menu_name);
+  $data = holmes_analyze_menu_tree($tree);
+  return $data;
+}
+
+function holmes_analyze_menu_tree($tree, $level = 0) {
+  $out = array();
+  $level ++;
+  foreach($tree as $title => $branch) {
+    $out[$title] = holmes_analyze_menu_link($branch['link'], $level);
+
+    $out += holmes_analyze_menu_tree($branch['below'], $level);
+  }
+  return $out;
+}
+
+function holmes_analyze_menu_link($link, $level) {
+  $out = array();
+  // check if it links a node, what type
+  $out['level'] = $level;
+  $out['title'] = $link['link_title'];
+
+  switch($link['page_callback']){
+    case 'prg_person_node_page_view':
+      //$out['type'] = 'node';
+      $out['type'] = holmes_get_nodetype($link['link_path']);
+    break;
+    case 'views_page':
+      $out['type'] = 'view';
+    break;
+    default:
+      $out['type'] = $link['page_callback'];
+  }
+ /*
+  if(!isset($out['subtype'])) {
+    $out['subtype'] = 'sub';
+  }
+*/
+  //$out['type'] = 'node';  // view, ?
+  //$out['subtype'] = 'page';  // view name, ?
+  $out['module'] = $link['module'];
+  //$out['page_callback'] = $link['page_callback'];
+  $out['hidden'] = $link['hidden'];
+  // page, tab or so
+  $out['typen'] = $link['type'];
+
+  return $out;
+}
+
+function holmes_get_nodetype($path) {
+  $exp = explode('/', $path);
+  $nid = end($exp);
+  $n = node_load($nid);
+  return $n->type;
+}
