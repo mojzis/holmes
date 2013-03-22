@@ -10,4 +10,9 @@ function holmes_ents() {
   holmes_json_cros($e);
 }
 
+function holmes_img_styles() {
+  $is = image_styles();
+  holmes_json_cros($is);
+}
+
 // TODO: installed field types

@@ -31,6 +31,13 @@ function holmes_menu() {
     'type' => MENU_NORMAL_ITEM,
     'file' => 'includes/structure.page.inc'
   );
+  $items['admin/structure/holmes/styles'] = array(
+    'title' => 'Styles',
+    'page callback' => 'holmes_img_styles',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'includes/structure.page.inc'
+  );
 
   return $items;
 }
