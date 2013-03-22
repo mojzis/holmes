@@ -11,6 +11,7 @@
 * download, install
 * visit /admin/structure/holmes
 * enjoy
+* check [DropReflect](http://mojzis.github.com/dropreflect), too :)
 
 ## plans
 * show hook source code
